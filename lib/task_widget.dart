@@ -9,8 +9,7 @@ class TaskListWidget extends ModelWidget<TaskRepository> {
   _TaskListWidgetState createState() => _TaskListWidgetState();
 }
 
-class _TaskListWidgetState
-    extends ObserverState<TaskRepository, TaskListWidget> {
+class _TaskListWidgetState extends ObserverState<TaskRepository, TaskListWidget> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -76,11 +75,11 @@ class _TaskWidgetState extends ObserverState<Task, TaskWidget> {
     ScaffoldMessenger.of(_currentContext).showSnackBar(
       SnackBar(
         action: SnackBarAction(
-            label: 'Undo',
+            label: 'OK',
             onPressed: () {
               print('Action Pressed');
             }),
-        content: Text('Note deleted. Would you like to undo?'),
+        content: Text('Note: ${widget.model.description} has been deleted'),
         duration: Duration(seconds: 6),
         padding: EdgeInsets.symmetric(horizontal: 12.0),
         behavior: SnackBarBehavior.floating,

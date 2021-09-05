@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 
 class SettingsDrawer extends StatelessWidget {
@@ -16,14 +18,36 @@ class SettingsDrawer extends StatelessWidget {
   }
 }
 
-class DoneOptions extends StatelessWidget {
+class DoneOptions extends StatefulWidget {
+  @override
+  _DoneOptionsState createState() => _DoneOptionsState();
+}
+
+class _DoneOptionsState extends State<DoneOptions> {
+  List<bool> _selections =  [true, false, false];
+ 
+
   @override
   Widget build(BuildContext context) {
-    // TODO Usar ToggleOptions
-    return Column(
-      children: [Text('Nothing'), Text('Grey out'), Text('Delete')]
-          .map((e) => ElevatedButton(onPressed: null, child: e))
-          .toList(),
+    return ToggleButtons(
+      children: [
+        Icon(Icons.local_activity), 
+        Icon(Icons.cabin), 
+        Icon(Icons.pending)
+      ],
+      isSelected: _selections,
+      onPressed: (int index) {
+        setState(() {
+          for (int buttonIndex = 0; buttonIndex < _selections.length; buttonIndex++) {
+            if (buttonIndex == index) {
+              _selections[buttonIndex] = true;
+            } else {
+              _selections[buttonIndex] = false;
+            }
+          }
+        });
+      },
+      direction: Axis.vertical,
     );
   }
 }
