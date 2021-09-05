@@ -1,16 +1,7 @@
-# gsd_app
+# PracticaFlutter => gsd_app
 
-A new Flutter project.
+Se ha implementado el Drawer con los distintos Toggles con su configuración y con una selección única (y una por defecto). 
+Pero sin haber podido acabar de conectar las acciones de los botones con las tasks.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Se ha implementado la navegación al detalle, así como el campo de texto y volver este a la pantalla anterior. 
+Pero solo se ha conseguido devolverlo en un SnackBar y no como una nueva widget.model.description nueva.

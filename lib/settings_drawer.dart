@@ -94,20 +94,20 @@ class _DoneOptionsState extends State<DoneOptions> {
   }
   Widget createDialog(BuildContext context) {
     return AlertDialog(
-      title: Text('Atención Pregunta!!'),
-      content: Text('Do yo want to delete all from repository??'),
+      title: Text('Atention user'),
+      content: Text('Do yo want to delete all tasks from the repository?'),
       actions: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextButton(
-              child: Text('Yes'),
+              child: Text('YES'),
               onPressed: () {
                 Navigator.pop(context, kOptionTextDeleteAll);
               },
             ),
             TextButton(
-              child: Text('Nooo!!!'),
+              child: Text('NO'),
               onPressed: () {
                 Navigator.pop(context, kOptionTextDelete);
               },
