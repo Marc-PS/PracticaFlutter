@@ -13,3 +13,4 @@ linter:
     prefer_initializing_formals: false
     prefer_const_constructors_in_immutables: false
     avoid_positional_boolean_parameters: false
+    avoid_classes_with_only_static_members: false
