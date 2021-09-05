@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gsd_app/domain/user_preferences.dart';
+import 'package:gsd_app/task_detail.dart';
 import 'package:gsd_domain/gsd_domain.dart';
 import 'package:mow/mow.dart';
 
@@ -37,17 +39,19 @@ class TaskWidget extends ModelWidget<Task> {
 
 class _TaskWidgetState extends ObserverState<Task, TaskWidget> {
   late BuildContext _currentContext;
-
+  //String _pref = UserPreferences.getUserPreferences();
+  
   // Lifecycle
   void _onCheckboxTap(bool? value) {
     final bool newValue = value ?? false;
     widget.model.state = newValue ? TaskState.done : TaskState.toDo;
   }
 
+
   @override
   Widget build(BuildContext context) {
     _currentContext = context;
-
+    
     return Dismissible(
       confirmDismiss: _confirmDismiss,
       background: DeleteTaskBackground(alignment: MainAxisAlignment.start),
@@ -57,14 +61,37 @@ class _TaskWidgetState extends ObserverState<Task, TaskWidget> {
       key: UniqueKey(),
       child: Card(
         child: ListTile(
+          title: Text(widget.model.description),
+          onTap: () async {
+            final String? editedText = await Navigator.of(context).push<String>(
+              MaterialPageRoute(
+                settings: RouteSettings(arguments: widget.model.description),
+                builder: (context) => TaskDetail(),
+                ),
+            );
+
+          _displayNewTask(context, editedText);
+          
+        
+          },
           leading: Checkbox(
             value: widget.model.state == TaskState.done,
             onChanged: _onCheckboxTap,
           ),
-          title: Text(widget.model.description),
         ),
       ),
     );
+  }
+
+   void _displayNewTask(BuildContext context, Object? val) {
+    if (val != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('This is what I got back: $val'),
+        ),
+      );
+    }
+    
   }
 
   // Handlers
@@ -91,6 +118,8 @@ class _TaskWidgetState extends ObserverState<Task, TaskWidget> {
 
     return true;
   }
+
+  
 
   void _deleteTask(DismissDirection direction) {
     // Eliminar la tarea del repo.
